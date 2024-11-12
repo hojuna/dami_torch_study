@@ -134,12 +134,12 @@ Saving & loading Models
 """
 
 #saving model
-torch.save(model.state_dict(), "model.pth")
+torch.save(model.state_dict(), "w1/pytorch_basics/model.pth")
 print("Saved PyTorch Model State to model.pth")
 
 #loading model
 model = NeuralNetwork().to(device)
-model.load_state_dict(torch.load("model.pth", weights_only=True))
+model.load_state_dict(torch.load("w1/pytorch_basics/model.pth", weights_only=True))
 
 
 
