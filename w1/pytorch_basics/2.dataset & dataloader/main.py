@@ -43,6 +43,7 @@ labels_map = {
 figure = plt.figure(figsize=(8, 8))
 cols, rows = 3, 3
 
+
 for i in range(1, cols * rows + 1):
     sample_idx = torch.randint(len(training_data), size=(1,)).item()
     img, label = training_data[sample_idx]
