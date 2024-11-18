@@ -89,7 +89,7 @@ def load_model():
 
 
 
-def test(net):
+def evaluate(net):
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     correct = 0
     total = 0
@@ -144,5 +144,23 @@ if __name__ == "__main__":
     train(5,net)
     # save_model()
     # load_model()
-    test(net)
+    evaluate(net)
     evaluate_class(net)
+
+"""
+evaluate 결과
+
+Accuracy of the network on the 10000 test images: 60 %
+Accuracy for class: plane is 57.5 %
+Accuracy for class: car   is 72.8 %
+Accuracy for class: bird  is 35.7 %
+Accuracy for class: cat   is 27.9 %
+Accuracy for class: deer  is 60.6 %
+Accuracy for class: dog   is 59.7 %
+Accuracy for class: frog  is 67.9 %
+Accuracy for class: horse is 65.3 %
+Accuracy for class: ship  is 79.9 %
+Accuracy for class: truck is 77.7 %
+
+
+"""
