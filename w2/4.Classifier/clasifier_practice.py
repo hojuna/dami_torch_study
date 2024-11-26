@@ -55,7 +55,7 @@ def train(train_epoch=10,model=None):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(net.parameters(), lr=0.001)
     
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
     net.to(device)
 
     for epoch in range(train_epoch):
@@ -90,7 +90,7 @@ def load_model():
 
 
 def evaluate(net):
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
     correct = 0
     total = 0
     
@@ -106,11 +106,11 @@ def evaluate(net):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-    print(f'Accuracy of the network on the 10000 test images: {100 * correct // total} %')
+    print(f'Accuracy of the network on the 10000 test images: {100 * correct / total} %')
 
 
 def evaluate_class(net):
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
     correct_pred = {classname: 0 for classname in classes}
     total_pred = {classname: 0 for classname in classes}
 
