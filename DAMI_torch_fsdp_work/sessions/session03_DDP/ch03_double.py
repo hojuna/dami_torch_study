@@ -14,7 +14,6 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DistributedSampler
 import numpy as np
 import random
-import torch.distributed.algorithms.ddp_comm_hooks.default_hooks as default_hooks
 
 
 class SimpleCNN(nn.Module):
@@ -105,7 +104,7 @@ def load_data(rank, world_size, batch_size):
 def demo_basic(rank, world_size):
 
     batch_size = 128
-    num_epochs = 10
+    num_epochs = 100
     learning_rate = 0.1
 
     train_loader, test_loader, train_sampler = load_data(rank, world_size, batch_size)
@@ -122,7 +121,7 @@ def demo_basic(rank, world_size):
     criterion  = nn.CrossEntropyLoss()
     optimizer = optim.SGD(ddp_model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
-    
+
     dist.barrier()
 
     epoch_times = []
@@ -144,8 +143,6 @@ def demo_basic(rank, world_size):
             print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc:.3f}%\n')
             print(f'Epoch Time: {epoch_time:.2f} seconds\n')
 
-        dist.barrier()
-
     #처음 값은 제외 ~ 뭔지 모르겠지만 처음에는 좀 오래 걸리는 것 같음
     epoch_times_tensor = torch.tensor(np.sum(epoch_times[1:])).to(rank)
     dist.all_reduce(epoch_times_tensor, op=dist.ReduceOp.SUM )
@@ -153,7 +150,7 @@ def demo_basic(rank, world_size):
     if rank == 0:
         avg_epoch_time = epoch_times_tensor.item() / world_size / len(epoch_times[1:])
         print(f'\nAverage epoch time: {avg_epoch_time:.2f} seconds')
-    
+
     cleanup()
 
 

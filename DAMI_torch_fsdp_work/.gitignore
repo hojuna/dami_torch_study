@@ -1,0 +1,16 @@
+sessions/session01_basicTorch/ch00_Quickstart/data/*
+sessions/session01_basicTorch/ch02_DatasetsAndDataLoaders/data/*
+sessions/session01_basicTorch/ch03_Transforms/data/*
+sessions/session01_basicTorch/ch06_OptimizationLoop/data/*
+sessions/session01_basicTorch/ch07_Save-Load-UseModel/*.pth
+data/*
+sessions/session02_deeplearning/best_model.pth
+
+# 허깅페이스 모델
+hf_models/*
+
+# 캐시 파일들도 함께 무시
+**/__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store

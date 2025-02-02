@@ -14,3 +14,8 @@ https://pytorch.org/tutorials/beginner/basics/intro.html
 ## w2_autograd,Neural Networks, Classifier
 
 [정리 노션 링크](https://potent-cold-511.notion.site/autograd-Neural-Networks-Classifier-142ecfa373a180a2b594d076868847fc?pvs=4)
+
+
+## w3_DDP
+
+[정리 노션 링크](https://potent-cold-511.notion.site/DDP-142ecfa373a180a2b594d076868847fc?pvs=4)
